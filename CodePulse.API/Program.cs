@@ -11,6 +11,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Configuration.AddUserSecrets<Program>();
 
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
@@ -19,14 +20,26 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ApplicationDbContext>( options =>
+// UseSqlServer
+//builder.Services.AddDbContext<ApplicationDbContext>( options =>
+//{
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCodePulseConnectionString"));
+//});
+
+//builder.Services.AddDbContext<AuthDbContext>(options =>
+//{
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCodePulseConnectionString"));
+//});
+
+//UseNpgsql
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CodePulseConnectionString"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("pgsqlCodePulseConnectionString"));
 });
 
 builder.Services.AddDbContext<AuthDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CodePulseConnectionString"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("pgsqlCodePulseConnectionString"));
 });
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
