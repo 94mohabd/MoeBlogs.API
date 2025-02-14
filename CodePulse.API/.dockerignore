@@ -1,0 +1,36 @@
+# Ignore build outputs
+bin/
+obj/
+out/
+
+# Ignore user-specific files
+*.user
+*.vs
+*.vscode
+*.suo
+*.ncb
+*.cache
+*.pdb
+*.ldb
+
+# Ignore environment files
+.env
+secrets.json
+
+# Ignore logs and temporary files
+*.log
+logs/
+temp/
+tmp/
+
+# Ignore dependency files
+node_modules/
+packages/
+
+# Ignore Docker-related files
+Dockerfile*
+.dockerignore
+
+# Ignore Git-related files
+.git
+.gitignore
